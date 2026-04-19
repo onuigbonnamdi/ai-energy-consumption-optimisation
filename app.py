@@ -327,12 +327,40 @@ with tab3:
 
 # ── Footer ────────────────────────────────────────────────────────────────────
 st.markdown("---")
-st.info(
-    "🔬 **Research demo** — This app uses synthetic data modelled on the "
-    "[UCI Individual Household Electric Power Consumption Dataset](https://doi.org/10.24432/C58K54) "
-    "(Hebrail & Berard, 2006). "
-    "For **live UK grid prices, real-time predictions and accurate cost analysis** → "
-    "**[GridSense Labs ⚡](https://gridsense-labs.streamlit.app)**"
+st.markdown(
+    """
+    <div style="
+        background: linear-gradient(135deg, #0d2318, #1a5c35);
+        border: 2px solid #4ade80;
+        border-radius: 14px;
+        padding: 20px 28px;
+        text-align: center;
+        margin-bottom: 16px;
+    ">
+        <div style="font-size:0.8rem; color:#86efac; letter-spacing:1px; text-transform:uppercase; margin-bottom:6px;">
+            🔬 Research Demo · UCI Dataset
+        </div>
+        <div style="font-size:1rem; color:#e2e8f0; margin-bottom:14px;">
+            This app uses <b>synthetic data</b> modelled on the 
+            <a href="https://doi.org/10.24432/C58K54" target="_blank" style="color:#86efac;">
+            UCI Household Power Dataset</a> (Hebrail & Berard, 2006).
+        </div>
+        <div style="font-size:1.1rem; color:white; font-weight:600; margin-bottom:12px;">
+            Want <b style="color:#4ade80">live UK grid prices</b>, real-time predictions & accurate cost analysis?
+        </div>
+        <a href="https://gridsense-labs.streamlit.app" target="_blank" style="
+            background: #4ade80;
+            color: #050f0a;
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 10px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            display: inline-block;
+        ">⚡ Try GridSense Labs →</a>
+    </div>
+    """,
+    unsafe_allow_html=True,
 )
 st.markdown(
     "<center style='color:grey;font-size:0.8rem;'>"
