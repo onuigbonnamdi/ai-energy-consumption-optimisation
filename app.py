@@ -221,13 +221,13 @@ with tab1:
             plt.close(fig)
 
             # Estimated cost
-            st.markdown("#### 💷 Estimated Cost (next 15 min)")
-            rate_ngn = 68.0   # NGN per kWh (approximate NERC rate)
+            st.markdown("#### 💰 Estimated Cost (next 15 min)")
+            rate_usd = 0.16   # USD per kWh (US average)
             rate_gbp = 0.24   # GBP per kWh (UK average)
             cost_kwh = predicted_kw * 0.25  # 15 min = 0.25 hours
             c1, c2 = st.columns(2)
-            c1.metric("🇳🇬 Nigeria (NGN)", f"₦{cost_kwh * rate_ngn:.2f}")
-            c2.metric("🇬🇧 UK (GBP)",      f"£{cost_kwh * rate_gbp:.4f}")
+            c1.metric("🇺🇸 USA (USD)", f"${cost_kwh * rate_usd:.4f}")
+            c2.metric("🇬🇧 UK (GBP)",  f"£{cost_kwh * rate_gbp:.4f}")
 
 # ── Tab 2: Model Performance ──────────────────────────────────────────────────
 with tab2:
@@ -304,11 +304,11 @@ with tab3:
 
     # Table
     profile_df = pd.DataFrame({
-        "Hour":          [f"{h:02d}:00" for h in hours_range],
+        "Hour":           [f"{h:02d}:00" for h in hours_range],
         "Predicted (kW)": [round(v, 3) for v in preds_24],
-        "Status":        [get_recommendation(v)[0] for v in preds_24],
-        "Est. Cost NGN": [f"₦{v*0.25*68:.2f}" for v in preds_24],
-        "Est. Cost GBP": [f"£{v*0.25*0.24:.4f}" for v in preds_24],
+        "Status":         [get_recommendation(v)[0] for v in preds_24],
+        "Est. Cost USD":  [f"${v*0.25*0.16:.4f}" for v in preds_24],
+        "Est. Cost GBP":  [f"£{v*0.25*0.24:.4f}" for v in preds_24],
     })
 
     def style_status(val):
@@ -327,6 +327,13 @@ with tab3:
 
 # ── Footer ────────────────────────────────────────────────────────────────────
 st.markdown("---")
+st.info(
+    "🔬 **Research demo** — This app uses synthetic data modelled on the "
+    "[UCI Individual Household Electric Power Consumption Dataset](https://doi.org/10.24432/C58K54) "
+    "(Hebrail & Berard, 2006). "
+    "For **live UK grid prices, real-time predictions and accurate cost analysis** → "
+    "**[GridSense Labs ⚡](https://gridsense-labs.streamlit.app)**"
+)
 st.markdown(
     "<center style='color:grey;font-size:0.8rem;'>"
     "AI Energy Consumption Optimiser · Nnamdi Onuigbo · SmartFlow Systems · "
